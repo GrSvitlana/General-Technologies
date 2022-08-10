@@ -1,0 +1,55 @@
+SQL (БД "Веб-магазин" в песочнице https://www.w3schools.com/sql/trysql.asp?filename=trysql_select_all):
+
+1. Вывести все (только) имена клиентов.
+SELECT *(CustomerName)
+FROM Customers;
+
+2. Вывести клиентов из Берлина, имена которых содержат слово "del".
+SELECT * 
+FROM Customers
+Where City = 'Berlin' and CustomerName LIKE '%del%'
+;
+
+3. Вывести контактные имена клиентов из Лондона.
+SELECT ContactName 
+FROM Customers
+Where City = 'London'
+;
+
+Second level: Создать таблицу Users с полями id, name, phone, country и добавить туда несколько пользователей.
+
+CREATE TABLE Users
+    ( id int
+    , name    VARCHAR(20)
+    , phone   NUMERIC(15)
+    , country VARCHAR(35)
+    );
+
+INSERT INTO Users 
+VALUES 
+        ( 0001
+        , 'Stefania'
+        , 00380990480190
+        , 'UKRAINE'
+        );
+
+INSERT INTO Users VALUES 
+        ( 0002
+        , 'Stefanie'
+        , 0049015200000000
+        , 'GERMANY'
+        );
+        
+        INSERT INTO Users VALUES 
+        ( 0003
+        , 'Stefani'
+        , 00390200000000
+        , 'Italy'
+        );
+        
+        INSERT INTO Users VALUES 
+        ( 0004
+        , 'Stephanie'
+        , 0044100000000
+        , 'United Kingdom'
+        );
