@@ -1,0 +1,113 @@
+1.Создать таблицу goods (товары) с полями:
+id (уникальное значение)
+title (cтрока максимум 30 символов)
+quantity (число больше 0)
+price (максимум 5-значное число)
+in_stock (символ (Y/N))
+
+CREATE TABLE Goods
+    ( id       int NOT NULL
+    , Title    VARCHAR(30)
+    , Quantity NUMERIC check (quantity > 0)
+    , Price    NUMERIC(5)
+    , In_stock CHAR(1) check (In_stock in ('Y', 'N'))
+    );
+
+2. Заполните созданную таблицу данными, минимум 10 строк.
+
+INSERT INTO Goods 
+VALUES 
+        ( 0001
+        , 'MacBook Air'
+        , 3
+        , 1499
+        , 'Y' 
+        );
+
+INSERT INTO Goods 
+VALUES 
+        ( 0002
+        , 'MacBook Pro'
+        , 2
+        , 1899
+        , 'Y' 
+        );
+        
+INSERT INTO Goods 
+VALUES 
+        ( 0003
+        , 'iPad Pro'
+        , 1
+        , 999
+        , 'Y' 
+        );
+        
+INSERT INTO Goods 
+VALUES 
+        ( 0004
+        , 'iPad Air'
+        , 2
+        , 699
+        , 'N' 
+        );
+        
+INSERT INTO Goods 
+VALUES 
+        ( 0005
+        , 'iPhone 13 Pro'
+        , 3
+        , 1099
+        , 'N' 
+        );
+        
+INSERT INTO Goods 
+VALUES 
+        ( 0006
+        , 'iPhone 13 Pro Max'
+        , 1
+        , 1299
+        , 'N' 
+        );
+        
+INSERT INTO Goods 
+VALUES 
+        ( 0007
+        , 'iPhone 12'
+        , 1
+        , 1099
+        , 'Y' 
+        );
+        
+INSERT INTO Goods 
+VALUES 
+        ( 0008
+        , 'iPhone 12 mini'
+        , 3
+        , 899
+        , 'N' 
+        );
+        
+INSERT INTO Goods 
+VALUES 
+        ( 0009
+        , 'iPhone 11'
+        , 2
+        , 579
+        , 'Y'
+        );
+        
+INSERT INTO Goods 
+VALUES 
+        ( 0010
+        , 'AirPods'
+        , 3
+        , 199
+        , 'Y' 
+        );
+
+3. Сформируйте выборку из 3-х самых дорогих товаров в таблице.
+
+SELECT DISTINCT *
+FROM Goods
+WHERE Price in (1899, 1499, 1299)
+;
