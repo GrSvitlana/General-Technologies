@@ -9,7 +9,7 @@ CREATE TABLE Goods
     ( id       INTEGER UNIQUE
     , Title    VARCHAR(30)
     , Quantity INTEGER check (quantity > 0)
-    , Price    NUMERIC(5)
+    , Price    NUMERIC(9,2)
     , In_stock CHAR(1) check (In_stock in ('Y', 'N'))
     );
 
