@@ -107,7 +107,7 @@ VALUES
 
 3. Сформируйте выборку из 3-х самых дорогих товаров в таблице.
 
-SELECT DISTINCT *
+SELECT *
 FROM Goods
-WHERE Price in (1899, 1499, 1299)
-;
+ORDER BY price DESC
+LIMIT 3;
