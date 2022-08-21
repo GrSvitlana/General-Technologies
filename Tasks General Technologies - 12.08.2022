@@ -12,12 +12,12 @@ WHERE CustomerID = 18;
 
 3. Удалить заказы 10257, 10258, 10259, 10260:
 DELETE FROM Orders
-WHERE OrderID >= 10257 AND OrderID <= 10260;
+WHERE OrderID IN (10257, 10257, 10258, 10259, 10260);
 
 4. Изменить поставщика (ShipperID) для заказов 10266, 10275, 10277, 10278 на значение 19:
 UPDATE Orders
 SET ShipperID = 19
-WHERE OrderID = 10266 OR OrderID = 10275 OR OrderID = 10277 OR OrderID = 10278;
+WHERE OrderID IN (10266, 10275, 10277, 10278);
 
 5. Вывести все товары (products) с ценой выше 60:
 SELECT * FROM [Products]
