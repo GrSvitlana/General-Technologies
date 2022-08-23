@@ -48,3 +48,20 @@ CHANGE animal_age age INTEGER;
 
 ALTER TABLE Animals
 DROP COLUMN age;
+
+-- Lection
+
+use lesson;
+
+CREATE TABLE People (
+id INTEGER PRIMARY key auto_increment,
+first_name VARCHAR(128),
+last_name VARCHAR(128)
+);
+
+INSERT INTO People (first_name, last_name) VALUES
+('Anton','Golubev'),
+('Viktoria','Petrova'),
+('Olga','Ivanova');
+
+SELECT * FROM People;
