@@ -1,0 +1,50 @@
+-- Используя sql workbench, создайте на компьютере базу данных homework.
+-- Внутри БД homework создайте таблицу animals (id, title, country)
+-- Добавьте несколько строк в таблицу
+-- Добавьте поле age (integer) со значением по умолчанию 0
+-- Проверьте содержимое таблицы
+-- Измените тип поля age на numeric(3, 1). Перед изменением типа необходимо очистить поле
+-- Измените тип поля age обратно на integer
+-- Переименуйте поле age на animal_age
+-- Удалите поле age
+
+CREATE DATABASE Homework;
+
+USE Homework;
+
+CREATE TABLE Animals (
+id INTEGER PRIMARY KEY,
+title varchar(128),
+country varchar(128)
+);
+
+INSERT INTO Animals (id, title, country) VALUES 
+(1, 'Cat', 'Germany'),
+(2, 'Dog', 'Spain'),
+(3, 'Snake', 'France'),
+(4, 'Mouse', 'Italy');
+
+SELECT * FROM Animals;
+
+ALTER TABLE Animals
+ADD age INTEGER DEFAULT 0;
+
+SET sql_safe_updates = 0;
+
+UPDATE Animals
+SET age = null;
+
+ALTER TABLE Animals
+MODIFY age NUMERIC(3,1);
+
+ALTER TABLE Animals
+MODIFY age INTEGER;
+
+ALTER TABLE Animals
+RENAME COLUMN age TO animal_age;
+
+ALTER TABLE Animals
+CHANGE animal_age age INTEGER;
+
+ALTER TABLE Animals
+DROP COLUMN age;
