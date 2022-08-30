@@ -1,0 +1,40 @@
+1. Увеличить всем учащимся оценку в 10 раз:
+
+DROP TABLE IF EXISTS Students;
+
+CREATE TABLE Students (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(128) NOT NULL,
+    last_name VARCHAR(128) NOT NULL,
+    avg_mark NUMERIC (2, 1) CHECK (avg_mark BETWEEN 0 AND 5),
+    gender CHAR (1) CHECK (gender IN('M', 'F'))
+);
+
+INSERT INTO Students (first_name, last_name, avg_mark, gender) 
+                             values 
+                                    ('Олег', 'Петров', 4.3, 'M'),
+																	  ('Семен', 'Степанов', 3.1, 'M'),
+																	  ('Ольга', 'Семенова', 4.7, 'F'),
+																	  ('Игорь', 'Романов', 3.1, 'M'),
+																	  ('Ирина', 'Иванова', 2.2, 'F');
+                                    
+SET sql_safe_updates = 0;
+
+ALTER TABLE Students
+MODIFY COLUMN avg_mark NUMERIC (3, 1);
+
+ALTER TABLE Students
+DROP CHECK students_chk_1;
+
+UPDATE Students
+SET avg_mark = avg_mark * 10;
+
+SELECT * FROM Students;
+
+2. Для всех учеников, у которых оценка не больше 31 увеличить на 10:
+
+UPDATE Students
+SET avg_mark = avg_mark + 10
+WHERE avg_mark <= 31;
+
+SELECT * FROM Students;
