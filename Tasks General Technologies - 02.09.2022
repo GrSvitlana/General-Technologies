@@ -1,0 +1,33 @@
+1. Write a query that displays orders from customers in London or France.
+
+SELECT 
+t2.ContactName,
+t2.CustomerName,
+t2.City,
+t2.Country,
+t4.ProductName
+FROM Orders t1
+INNER JOIN Customers t2
+ON t1.CustomerID = t2.CustomerID
+INNER JOIN OrderDetails t3
+ON t1.OrderID = t3.OrderID
+INNER JOIN Products t4
+ON t3.ProductID = t4.ProductID
+WHERE City = 'London' OR Country = 'France'
+
+2. Write a query that displays the orders assigned to the King Robert employee.
+
+SELECT 
+t1.LastName,
+t1.FirstName,
+t2.OrderID,
+t4.ProductName,
+t4.Unit
+FROM Employees t1
+INNER JOIN Orders t2
+ON t1.EmployeeID = t2.EmployeeID
+INNER JOIN OrderDetails t3
+ON t2.OrderID = t3.OrderID
+INNER JOIN Products t4
+ON t3.ProductID = t4.ProductID
+WHERE t1.LastName = 'King' AND t1.FirstName = 'Robert'
