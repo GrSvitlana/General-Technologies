@@ -1,0 +1,51 @@
+1. Коротко опишите отличие между операторами INNER JOIN и LEFT JOIN и дополните ответ примерами запросов.
+
+INNER JOIN возвращает все записи, которые удовлетворяют условию объединения таблиц и совпадают в обеих таблицах.
+LEFT JOIN, в отличии от INNER JOIN, возвращает все записи из левой таблицы и только те записи из правой таблицы, которые удовлетворяют условию 
+объединения таблиц. Если нет связанных записей в правой таблице, то эти столбцы будут содержать NULL.
+LEFT JOIN считается более безопасным, так как получает все записи из связанной таблицы LEFT и уменьшает вероятность потери данных.
+
+SELECT
+t1.OrderID,
+t2.Custommer_Name,
+t2.Country
+FROM Orders t1
+INNER JOIN Customers t2
+ON t1.CustomerID = t2.CustomerID
+WHERE OrderID = 10248
+
+SELECT 
+t1.Department_name as Department
+FROM Departments t1
+LEFT JOIN Employees t2
+ON t1.Department_id = t2.Department_id
+WHERE t2.Last_name IS NULL;
+
+2. Коротко опишите, в каком случае корректнее использоват оператор RIGHT JOIN и дополните ответ примером.
+
+RIGHT JOIN возвращает все строки из правой таблицы, даже если в левой таблице нет совпадений. Работает, как и LEFT JOIN, но с правой таблицей.
+Например, у нас есть таблица сотрудников Employees и таблица отделов Departments. В случае объединения таблиц и использования RIGHT JOIN, 
+оператор вернет список всех отделов и имена только тех сотрудников, которые имеют связанные записи в таблице Departments.
+
+SELECT 
+t1.First_name,
+t1.Last_name,
+t2.Department_name as Department
+FROM Employees t1
+RIGHT JOIN Departments t2
+ON t1.Department_id = t2.Department_id;
+
+В итоге мы не потеряем данные из правой таблицы и выведем список всех отделов.
+
+Если же нам надо получить список всех сотрудников в не зависимости есть ли у них связанные записи по полю отдел, то корректно использовать оператор
+LEFT JOIN.
+
+SELECT 
+t1.First_name,
+t1.Last_name,
+t2.Department_name as Department
+FROM Employees t1
+LEFT JOIN Departments t2
+ON t1.Department_id = t2.Department_id;
+
+В итоге мы получим имена всех сотрудников. Поля, для сотрудников у которых нет связных данных из правой таблицы, будут заполнены NULL.
