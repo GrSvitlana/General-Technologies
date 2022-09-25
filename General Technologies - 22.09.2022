@@ -1,0 +1,98 @@
+Решите ряд задач из таблицы EMPLOYEES
+
+Агрегация:
+
+Посчитайте количество сотрудников в каждом department_id
+
+SELECT 
+COUNT(employee_id) AS count_empemployees,
+department_id
+FROM employees
+GROUP BY department_id
+ORDER BY count_empemployees DESC;
+ 
+Сформируйте итоговую сумму всех зарплат для каждого department_id 
+
+SELECT 
+SUM(salary) AS total_salary,
+department_id
+FROM employees
+GROUP BY department_id
+ORDER BY total_salary DESC;
+ 
+Рассчитайте среднюю зарплату для каждого job_id
+
+SELECT 
+AVG(salary) AS avg_salary,
+job_id
+FROM employees
+GROUP BY job_id
+ORDER BY avg_salary DESC;
+ 
+Рассчитайте для каждого department_id количество сотрудников, которые получает зарплату больше средней арифметической среди всех сотрудников.
+
+SELECT
+t2.department_name,
+COUNT(employee_id) AS count_empemployees,
+AVG(salary)
+FROM employees t1
+INNER JOIN departments t2
+ON t1.department_id = t2.department_id
+GROUP BY department_name
+HAVING AVG(salary)
+ORDER BY count_empemployees DESC;
+
+EMPLOYEES, DEPARTMENTS, JOBS, LOCATIONS
+
+Объединение данных:
+Выведите имена и фамилии сотрудников, а также полную расшифровку профессии.
+
+SELECT
+t1.first_name,
+t1.last_name,
+t2.job_title
+FROM employees t1
+LEFT JOIN jobs t2
+ON t1.job_id = t2.job_id;
+ 
+Выведите список имен департаментов, а также город где они находятся
+
+SELECT
+t1.department_name,
+t2.city
+FROM departments t1
+LEFT JOIN locations t2
+ON t1.location_id = t2.location_id
+ 
+Выведите имена и фамилии сотрудников, а также адрес департамента, в котором они работают
+
+SELECT
+t1.first_name,
+t1.last_name,
+t2.department_name,
+t3.postal_code,
+t3.city,
+t3.street_address
+FROM employees t1
+LEFT JOIN departments t2
+ON t1.department_id = t2.department_id
+LEFT JOIN locations t3
+ON t2.location_id = t3.location_id;
+
+Выведите имена и фамилии самых высокооплачиваемых сотрудников в каждом департаменте
+
+SELECT
+t2.department_id,
+t1.first_name,
+t1.last_name,
+t2.max_salary
+FROM employees t1
+JOIN (
+SELECT
+department_id,
+MAX(salary) AS max_salary
+FROM employees
+ROUP BY department_id
+) t2
+ON t1.department_id = t2.department_id
+ORDER BY department_id
